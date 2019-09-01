@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CWS.Models.Document>
+
+@{
+    ViewData["Title"] = "Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Documents</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="login-form">
+                            <div class="btn-Add">
+                                <a asp-action="Create" class="btn btn-primary " data-toggle="modal" data-target="#largeModal">Add Document</a>
+                            </div>
+                            <form action="get">
+                                <div class="form-inline">
+                                    <input name="keyword" class="au-input au-input--l mr-3 w-40" type="text" placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="fas fa-search" aria-hidden="true"></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-3 thumbnail" style="margin-left: 20px; margin-bottom: 30px; height:300px;">
+                                    <embed src="~/Upload/@Html.DisplayFor(modelItem => item.DocumentsName)" alt="@Html.DisplayFor(modelItem => item.DocumentsName)" style="width:200px;height:200px;">
+                                    <h6>@Html.DisplayFor(modelItem => item.DocumentsName)</h6>
+                                    <a asp-action="Delete" asp-route-id="@item.DocumentsID">Delete</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

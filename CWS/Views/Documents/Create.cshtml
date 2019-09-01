@@ -1,0 +1,42 @@
+﻿@model CWS.Models.Document
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Document</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Create">
+            <div id="danger" class="text-danger">
+                <span id="view-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" name="file" class="form-control" id="file" multiple />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" id="save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#save").click(function () {
+            if ($("#file").val() == "") {
+                $("#danger").fadeIn();
+                $("#view-danger").append("File not found");
+                return false;
+            }
+        });
+    })
+</script>

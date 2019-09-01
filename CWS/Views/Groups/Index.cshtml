@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CWS.Models.Group>
+
+@{
+    ViewData["Title"] = "Groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Groups</strong>
+            </div>
+            <div class="card-body">
+                <div class="login-form">
+                    <div class="typo-headers">
+                        <h3 class="pb-2 display-5">Add Group</h3>
+                    </div>
+                    <div class="btn-Add">
+                        <a asp-action="Create" class="btn btn-primary ">Add Group</a>
+                    </div>
+                    <form method="get" asp-action="Index">
+                        <div class="form-inline">
+                            <input name="KeyWord" class="au-input au-input--l mr-3 w-40" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" class="fas fa-search" aria-hidden="true"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row m-t-30">
+                    <div class="col-md-12">
+                        <!-- DATA TABLE-->
+                        <div class="table-responsive m-b-40">
+                            <table class="table table-borderless table-data3">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Creat at</th>
+                                        <th>Modify at</th>
+                                        <th>Owner</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><a href="#">@Html.DisplayFor(modelItem => item.GroupName)</a></td>
+                                            <td>@Html.DisplayFor(modelItem => item.Creaded)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Updated)</td>
+                                            <td><a href="#">xxxxxxxxxx</a></td>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <a asp-action="Delete" asp-route-id="@item.GroupId" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                    </a>
+                                                    <a asp-action="Edit" asp-route-id="@item.GroupId" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
